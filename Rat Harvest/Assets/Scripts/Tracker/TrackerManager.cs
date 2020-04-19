@@ -7,8 +7,11 @@ public class TrackerManager : MonoBehaviour
     //Instancia
     private static TrackerManager instance = null;
 
-    //Parámetros persistentes
-    float timestamp;    string idJuego;    string idSesion;    string idUsuario;
+    //Parámetros persistentes (comunes a todos los eventos en un mismo contexto)
+    float timestamp;    string idJuego;    string idSesion;    string idUsuario;
+
+    //Sistema de persistencia (para guardar los eventos)
+    IPersistenceSystem persistenceSys;    //Lista de TrackerAssets, uno de cada tipo de evento    List<ITrackerAsset> trackerAssets;
 
     //Constructora privada
     private TrackerManager()
@@ -29,22 +32,35 @@ public class TrackerManager : MonoBehaviour
     }
 
 
-    //Para obtener la instancia del Singleton
+    //Inicialización del sistema de telemetría
+    public static void Init()
+    {
+        //Crear Tracker Assets, inicizalizar timestamp e ids
+    }
+
+
+    //Añade un evento a la cola
     public static void TrackEvent (RatEvent e)
     {
-        //Añadirlo a la cola o algo sabe
+        //Preguntar a todos los TrackerAssets que si le interesa
+    }
+
+    //Finalización del sistema de telemetría
+    public static void End()
+    {
+
     }
 
 
     // Start is called before the first frame update
-    void Start()
-    {
+    //void Start()
+    //{
         
-    }
+    //}
 
-    // Update is called once per frame
-    void Update()
-    {
+    //// Update is called once per frame
+    //void Update()
+    //{
         
-    }
+    //}
 }
