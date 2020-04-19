@@ -5,7 +5,7 @@ using UnityEngine;
 /*
  * Clase para representar un evento
  */
-public class Event
+public class RatEvent
 {
 
 }

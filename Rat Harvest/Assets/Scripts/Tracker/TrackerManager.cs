@@ -4,7 +4,12 @@ using UnityEngine;
 
 public class TrackerManager : MonoBehaviour
 {
-    private static TrackerManager instance = null;
+    //Instancia
+    private static TrackerManager instance = null;
+
+    //Parámetros persistentes
+    float timestamp;    string idJuego;    string idSesion;    string idUsuario;
+
     //Constructora privada
     private TrackerManager()
     {
@@ -25,7 +30,7 @@ public class TrackerManager : MonoBehaviour
 
 
     //Para obtener la instancia del Singleton
-    public static void TrackEvent (Event e)
+    public static void TrackEvent (RatEvent e)
     {
         //Añadirlo a la cola o algo sabe
     }
