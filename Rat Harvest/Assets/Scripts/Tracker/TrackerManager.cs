@@ -1,66 +1,75 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Sistema de gestion de telemetria.
+/// Se implementa siguiendo el patron Singleton.
+/// </summary>
 public class TrackerManager : MonoBehaviour
 {
-    //Instancia
-    private static TrackerManager instance = null;
+    public static TrackerManager Instance = null;
+    private IPersistence persistenceObject;
+    private List<ITrackerAsset> activeTrackers;
 
-    //Parámetros persistentes (comunes a todos los eventos en un mismo contexto)
-    float timestamp;    string idJuego;    string idSesion;    string idUsuario;
+    /// <summary>
+    /// Identificador del usuario actual.
+    /// </summary>
+    private int userId;
+    /// <summary>
+    /// Identificador del juego actual.
+    /// </summary>
+    private int gameId;
+    /// <summary>
+    /// Identificador de la sesion actual.
+    /// </summary>
+    private int sessionId;
 
-    //Sistema de persistencia (para guardar los eventos)
-    IPersistenceSystem persistenceSys;    //Lista de TrackerAssets, uno de cada tipo de evento    List<ITrackerAsset> trackerAssets;
-
-    //Constructora privada
-    private TrackerManager()
+    /// <summary>
+    /// Modifica el objeto encargado del sistema de persistencia.
+    /// </summary>
+    /// <param name="persistenceObject"></param>
+    public void SetPersistence(IPersistence persistenceObject)
     {
+        this.persistenceObject = persistenceObject;
     }
 
-    //Para obtener la instancia del Singleton
-    public static TrackerManager Instance
+    /// <summary>
+    /// Comprueba si un evento recibido debe procesarse, y si es asi lo envia al sistema de persistencia.
+    /// </summary>
+    /// <param name="e">El evento recibido.</param>
+    public void TrackEvent(TrackerEvent e)
     {
-        get
+        foreach (ITrackerAsset tracker in activeTrackers)
         {
-            if (instance == null)
+            if (tracker.Accept(e))
             {
-                instance = new TrackerManager();
+                persistenceObject.Send(e);
+                return;
             }
-            return instance;
         }
     }
 
-
-    //Inicialización del sistema de telemetría
-    public static void Init()
+    void Awake()
     {
-        //Crear Tracker Assets, inicizalizar timestamp e ids
+        // Inicializacion del Singleton
+        if (Instance != null)
+        {
+            if (Instance != this)
+            {
+                Destroy(gameObject);
+            }
+        }
+        else
+        {
+            Instance = this;
+            DontDestroyOnLoad(this);
+        }
     }
-
-
-    //Añade un evento a la cola
-    public static void TrackEvent (RatEvent e)
-    {
-        //Preguntar a todos los TrackerAssets que si le interesa
-    }
-
-    //Finalización del sistema de telemetría
-    public static void End()
-    {
-
-    }
-
-
-    // Start is called before the first frame update
-    //void Start()
-    //{
-        
-    //}
-
-    //// Update is called once per frame
-    //void Update()
-    //{
-        
-    //}
 }
+
+// DUDAS:
+// ¿La cola de eventos debería ir en el TrackerManager o en el sistema de persistencia? Si va en el sistema de persistencia, ¿es mejor una cola de strings o de TrackerEvents?
+// ¿Los métodos del serializador deberían ser estáticos? ¿Esto es compatible en C# con el patrón Strategy? Si no, ¿qué clase cuenta con un objeto serializador?
+// Si utilizamos TrackerAssets, ¿es necesario implementarlos con un patrón Visitor puro? ¿Basta con comprobar el tipo del TrackerEvent y devolver true o false?
