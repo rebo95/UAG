@@ -2,7 +2,7 @@
 /// <summary>
 /// Tipo enumerado para identificar los diferentes eventos.
 /// </summary>
-public enum EventType { StartGame, EndGame }
+public enum MyEventType { StartGame, EndGame }
 
 /// <summary>
 /// Clase base que define los eventos.
@@ -28,7 +28,7 @@ public abstract class TrackerEvent
     /// <summary>
     /// Identificador del tipo de evento.
     /// </summary>
-    public EventType Type { get; set; }
+    public MyEventType Type { get; set; }
 
     /// <summary>
     /// Traduce el evento al formato Json.

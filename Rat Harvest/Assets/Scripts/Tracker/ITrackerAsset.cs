@@ -9,7 +9,7 @@ public interface ITrackerAsset
     /// </summary>
     /// <param name="e">El evento a comprobar.</param>
     /// <returns>true si el evento debe registrarse, false en caso contrario.</returns>
-    public bool Accept(TrackerEvent e);
+    bool Accept(TrackerEvent e);
 }
 
 /// <summary>
@@ -24,7 +24,7 @@ public class StartGameTracker : ITrackerAsset
     /// <returns>true si el evento es de tipo StartGame, false en caso contrario.</returns>
     public bool Accept(TrackerEvent e)
     {
-        return e.Type == EventType.StartGame;
+        return e.Type == MyEventType.StartGame;
     }
 }
 
@@ -40,6 +40,6 @@ public class EndGameTracker : ITrackerAsset
     /// <returns>true si el evento es de tipo EndGame, false en caso contrario.</returns>
     public bool Accept(TrackerEvent e)
     {
-        return e.Type == EventType.EndGame;
+        return e.Type == MyEventType.EndGame;
     }
 }

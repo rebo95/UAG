@@ -9,10 +9,10 @@ public interface IPersistence
     /// Serializa y encola un evento (persistencia asíncrona).
     /// </summary>
     /// <param name="e">El evento recibido por el Sistema de Persistencia.</param>
-    public void Send(TrackerEvent e);
+    void Send(TrackerEvent e);
 
     /// <summary>
     /// Vuelca todos los elementos de la cola de eventos.
     /// </summary>
-    public void Flush();
+    void Flush();
 }
