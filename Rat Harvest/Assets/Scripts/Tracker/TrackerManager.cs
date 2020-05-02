@@ -45,6 +45,11 @@ public class TrackerManager : MonoBehaviour
         {
             if (tracker.Accept(e))
             {
+                e.UserId = userId;
+                e.GameId = gameId;
+                e.SessionId = sessionId;
+                e.TimeStamp = (long)Time.realtimeSinceStartup;
+
                 persistenceObject.Send(e);
                 return;
             }

@@ -27,8 +27,6 @@ public class FilePersistence : IPersistence
     public void Send(TrackerEvent e)
     {
         string serializedEvent = serializer.Serialize(e);
-        Debug.Log(Application.persistentDataPath);
-
         string path = Application.persistentDataPath + "/events.json";
         StreamWriter writer = new StreamWriter(path, true);
         writer.WriteLine(serializedEvent);
