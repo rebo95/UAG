@@ -11,7 +11,6 @@ public class JsonSerializer : ISerializer
     /// <returns>Una cadena de texto en formato Json.</returns>
     public string Serialize(TrackerEvent e)
     {
-        // TODO
-        return "";
+        return e.ToJson();
     }
 }

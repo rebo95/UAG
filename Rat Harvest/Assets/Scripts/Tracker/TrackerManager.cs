@@ -67,6 +67,21 @@ public class TrackerManager : MonoBehaviour
             DontDestroyOnLoad(this);
         }
     }
+
+    void Start()
+    {
+        activeTrackers = new List<ITrackerAsset>();
+        activeTrackers.Add(new StartGameTracker());
+        SetPersistence(new FilePersistence(new JsonSerializer()));
+
+        StartGameEvent e = new StartGameEvent();
+        e.UserId = userId;
+        e.GameId = gameId;
+        e.SessionId = sessionId;
+        e.Type = MyEventType.StartGame;
+
+        TrackEvent(e);
+    }
 }
 
 // DUDAS:

@@ -1,4 +1,6 @@
-﻿
+﻿using Newtonsoft.Json;
+using UnityEngine;
+
 /// <summary>
 /// Tipo enumerado para identificar los diferentes eventos.
 /// </summary>
@@ -63,8 +65,12 @@ public class StartGameEvent : TrackerEvent
     /// <returns>Una cadena de texto en formato CSV.</returns>
     public override string ToJson()
     {
-        // TODO
-        return "";
+        string jsonTypeNameAll = JsonConvert.SerializeObject(this, Formatting.Indented, new JsonSerializerSettings
+        {
+            TypeNameHandling = TypeNameHandling.All
+        });
+
+        return jsonTypeNameAll;
     }
 }
 
