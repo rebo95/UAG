@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour
 
     public void EndGame()
     {
-        //TODOTracker
+        TrackerManager.Instance.TrackEvent(new EndGameEvent());
         Debug.Log("EVENTO: END_GAME, finalScore = " + playerManager.PlayerScore);
         if (Victory())
             SceneManager.instance.loadYouWin();
@@ -87,31 +87,32 @@ public class GameManager : MonoBehaviour
     {
         //Primer minuto de partida
         if (firstMin)
-        {
-            //TODOTracker
+        { 
+        
+            TrackerManager.Instance.TrackEvent(new FirstMinEvent());
             Debug.Log("EVENTO: FIRST_MIN");
 
-            //TODOTracker
+            TrackerManager.Instance.TrackEvent(new PlantedFirstMinEvent());
             Debug.Log("EVENTO: PLANTED_FIRSTMIN, planted = " + planted);
 
-            //TODOTracker
+            TrackerManager.Instance.TrackEvent(new ShotFirstMinEvent());
             Debug.Log("EVENTO: SHOTS_FIRSTMIN, shots = " + shots);
 
-            //TODOTracker
+            TrackerManager.Instance.TrackEvent(new PlayerPosFirstMinEvent());
             Debug.Log("EVENTO: PLAYERPOS_FIRSTMIN, positions = ");
 
             firstMin = false;
         }
 
         //Puntos
-        //TODOTracker
+        TrackerManager.Instance.TrackEvent(new PointsMinEvent());
         Debug.Log("EVENTO: POINTS_MIN, points = " + playerManager.PlayerScore);
     }
 
     //Se ha disparado el arma
     public void NotifyShot()
     {
-        //TODOTracker
+        TrackerManager.Instance.TrackEvent(new WeaponShotEvent());
         Debug.Log("EVENTO: WEAPON_SHOT");
         shots++;
     }
@@ -119,7 +120,7 @@ public class GameManager : MonoBehaviour
     //Se ha plantado un tomate
     public void NotifyPlant()
     {
-        //TODOTracker
+        TrackerManager.Instance.TrackEvent(new UserPlantEvent());
         Debug.Log("EVENTO: USER_PLANT");
         planted++;
     }
@@ -127,7 +128,7 @@ public class GameManager : MonoBehaviour
     //Se han recogido tomates
     public void NotifyHarvest(int plantState, int tomatoes, int playerLoad)
     {
-        //TODOTracker
+        TrackerManager.Instance.TrackEvent(new UserHarvestEvent());
         Debug.Log("EVENTO: USER_HARVEST, plantState = " + plantState + ", tomatoes = " + tomatoes);
 
         //Hemos cogido Máxima carga
@@ -141,7 +142,7 @@ public class GameManager : MonoBehaviour
     //Se han depositado los tomates
     public void NotifyStore(int score)
     {
-        //TODOTracker
+        TrackerManager.Instance.TrackEvent(new UserStoreEvent());
         Debug.Log("EVENTO: USER_STORE, score = " + score);
 
         //Veníamos con la carga máxima
