@@ -95,8 +95,12 @@ public class EndGameEvent : TrackerEvent
     /// <returns>Una cadena de texto en formato CSV.</returns>
     public override string ToJson()
     {
-        // TODO
-        return "";
+        string jsonTypeNameAll = JsonConvert.SerializeObject(this, Formatting.Indented, new JsonSerializerSettings
+        {
+            TypeNameHandling = TypeNameHandling.All
+        });
+
+        return jsonTypeNameAll;
     }
 }
 
@@ -123,8 +127,12 @@ public class WhatToDoShownEvent : TrackerEvent
     /// <returns>Una cadena de texto en formato CSV.</returns>
     public override string ToJson()
     {
-        // TODO
-        return "";
+        string jsonTypeNameAll = JsonConvert.SerializeObject(this, Formatting.Indented, new JsonSerializerSettings
+        {
+            TypeNameHandling = TypeNameHandling.All
+        });
+
+        return jsonTypeNameAll;
     }
 }
 
@@ -150,8 +158,12 @@ public class FirstMinEvent : TrackerEvent
     /// <returns>Una cadena de texto en formato CSV.</returns>
     public override string ToJson()
     {
-        // TODO
-        return "";
+        string jsonTypeNameAll = JsonConvert.SerializeObject(this, Formatting.Indented, new JsonSerializerSettings
+        {
+            TypeNameHandling = TypeNameHandling.All
+        });
+
+        return jsonTypeNameAll;
     }
 }
 
@@ -178,8 +190,12 @@ public class UserPlantEvent : TrackerEvent
     /// <returns>Una cadena de texto en formato CSV.</returns>
     public override string ToJson()
     {
-        // TODO
-        return "";
+        string jsonTypeNameAll = JsonConvert.SerializeObject(this, Formatting.Indented, new JsonSerializerSettings
+        {
+            TypeNameHandling = TypeNameHandling.All
+        });
+
+        return jsonTypeNameAll;
     }
 }
 
@@ -205,8 +221,12 @@ public class UserHarvestEvent : TrackerEvent
     /// <returns>Una cadena de texto en formato CSV.</returns>
     public override string ToJson()
     {
-        // TODO
-        return "";
+        string jsonTypeNameAll = JsonConvert.SerializeObject(this, Formatting.Indented, new JsonSerializerSettings
+        {
+            TypeNameHandling = TypeNameHandling.All
+        });
+
+        return jsonTypeNameAll;
     }
 }
 
@@ -233,8 +253,12 @@ public class UserStoreEvent : TrackerEvent
     /// <returns>Una cadena de texto en formato CSV.</returns>
     public override string ToJson()
     {
-        // TODO
-        return "";
+        string jsonTypeNameAll = JsonConvert.SerializeObject(this, Formatting.Indented, new JsonSerializerSettings
+        {
+            TypeNameHandling = TypeNameHandling.All
+        });
+
+        return jsonTypeNameAll;
     }
 }
 
@@ -261,8 +285,12 @@ public class WeaponShotEvent : TrackerEvent
     /// <returns>Una cadena de texto en formato CSV.</returns>
     public override string ToJson()
     {
-        // TODO
-        return "";
+        string jsonTypeNameAll = JsonConvert.SerializeObject(this, Formatting.Indented, new JsonSerializerSettings
+        {
+            TypeNameHandling = TypeNameHandling.All
+        });
+
+        return jsonTypeNameAll;
     }
 }
 
@@ -289,8 +317,12 @@ public class ReadTime : TrackerEvent
     /// <returns>Una cadena de texto en formato CSV.</returns>
     public override string ToJson()
     {
-        // TODO
-        return "";
+        string jsonTypeNameAll = JsonConvert.SerializeObject(this, Formatting.Indented, new JsonSerializerSettings
+        {
+            TypeNameHandling = TypeNameHandling.All
+        });
+
+        return jsonTypeNameAll;
     }
 }
 
@@ -317,8 +349,12 @@ public class MaxLoadTimeEvent : TrackerEvent
     /// <returns>Una cadena de texto en formato CSV.</returns>
     public override string ToJson()
     {
-        // TODO
-        return "";
+        string jsonTypeNameAll = JsonConvert.SerializeObject(this, Formatting.Indented, new JsonSerializerSettings
+        {
+            TypeNameHandling = TypeNameHandling.All
+        });
+
+        return jsonTypeNameAll;
     }
 }
 
@@ -345,8 +381,12 @@ public class PlantedFirstMinEvent : TrackerEvent
     /// <returns>Una cadena de texto en formato CSV.</returns>
     public override string ToJson()
     {
-        // TODO
-        return "";
+        string jsonTypeNameAll = JsonConvert.SerializeObject(this, Formatting.Indented, new JsonSerializerSettings
+        {
+            TypeNameHandling = TypeNameHandling.All
+        });
+
+        return jsonTypeNameAll;
     }
 }
 
@@ -374,8 +414,12 @@ public class ShotFirstMinEvent : TrackerEvent
     /// <returns>Una cadena de texto en formato CSV.</returns>
     public override string ToJson()
     {
-        // TODO
-        return "";
+        string jsonTypeNameAll = JsonConvert.SerializeObject(this, Formatting.Indented, new JsonSerializerSettings
+        {
+            TypeNameHandling = TypeNameHandling.All
+        });
+
+        return jsonTypeNameAll;
     }
 }
 
@@ -402,8 +446,12 @@ public class PlayerPosFirstMinEvent : TrackerEvent
     /// <returns>Una cadena de texto en formato CSV.</returns>
     public override string ToJson()
     {
-        // TODO
-        return "";
+        string jsonTypeNameAll = JsonConvert.SerializeObject(this, Formatting.Indented, new JsonSerializerSettings
+        {
+            TypeNameHandling = TypeNameHandling.All
+        });
+
+        return jsonTypeNameAll;
     }
 }
 
@@ -430,7 +478,11 @@ public class PointsMinEvent : TrackerEvent
     /// <returns>Una cadena de texto en formato CSV.</returns>
     public override string ToJson()
     {
-        // TODO
-        return "";
+        string jsonTypeNameAll = JsonConvert.SerializeObject(this, Formatting.Indented, new JsonSerializerSettings
+        {
+            TypeNameHandling = TypeNameHandling.All
+        });
+
+        return jsonTypeNameAll;
     }
 }
