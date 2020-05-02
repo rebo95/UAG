@@ -29,7 +29,7 @@ public class PlayerManager : MonoBehaviour
     public int PlayerScore { get { return this.playerScore; } }
 
     // Player's Harvest
-    private int playerHarvest = 0;
+    public int playerHarvest = 0;
     public int PlayerHarvest { get { return this.playerHarvest; } }
 
     [SerializeField]
@@ -49,7 +49,10 @@ public class PlayerManager : MonoBehaviour
 
     public void updateScore()
     {
-        if(playerHarvest != 0)
+        //Tracker
+        GameManager.instance.NotifyStore(playerHarvest);
+
+        if (playerHarvest != 0)
             AkSoundEngine.PostEvent("HUD_FoodBox", gameObject);
 
         playerScore += playerHarvest;

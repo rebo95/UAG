@@ -346,6 +346,9 @@ public class ShotGunBehaviour : MonoBehaviour
             shooting = false;
         if ((Input.GetButtonDown("Fire1") || (Input.GetAxis("Fire1") > 0 && !shooting)) && !waitingForNewShot && bulletsOnWeapon > 0)
         {
+            //Tracker
+            GameManager.instance.NotifyShot();
+
             fire();
             shooting = true;
             currentRecoilPosition -= weaponRecoilAmount;

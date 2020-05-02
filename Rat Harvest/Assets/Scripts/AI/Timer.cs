@@ -19,6 +19,11 @@ public class Timer : MonoBehaviour
     private float fstartRoundTime;
     float time = 0;
 
+    //    TRACKER   //
+    public float GetTime() { return time; }
+    float nextMinTime;
+    //              //
+
     [SerializeField]
     private float ratsAreAwakeTextTime = 3.0f;
 
@@ -64,12 +69,20 @@ public class Timer : MonoBehaviour
         if (!endGame)
         {
             time -= Time.deltaTime;
+
+            //Ha pasado un minuto
+            if (!preRound && time < nextMinTime)
+            {
+                GameManager.instance.NotifyMinutePassed();
+                nextMinTime -= 60;
+            }
         }
 
         if (time <= 0 && preRound)
         {
             TurnOnSpawnerAndPlantGrowing();
             time = harvestingTime +1;
+            nextMinTime = time - 60;
             preRound = false;
         }
         else if (time <= 0 && !preRound)
@@ -106,13 +119,6 @@ public class Timer : MonoBehaviour
         Invoke("HUD_ClockOut", fstartRoundTime + 291);
 
         Invoke("MX_Outro", fstartRoundTime + 297);
-
-    
-
-
-
-
-
     }
 
     void MX_WindUp()

@@ -19,7 +19,7 @@ public class Plant_Behaviour : MonoBehaviour, IPooledObject
     [SerializeField] private int plantCriticalHealth;
 
     // A variable to know the current state of the plant
-    private int currentState = 0;
+    public int currentState = 0;
 
     // Public list to set the different models of the plant
     [SerializeField] private List<GameObject> plantModels;

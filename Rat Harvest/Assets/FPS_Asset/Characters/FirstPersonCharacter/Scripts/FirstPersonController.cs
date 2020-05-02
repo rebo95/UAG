@@ -369,6 +369,9 @@ namespace UnityStandardAssets.Characters.FirstPerson
             if (PlantPointScript != null)
                 if (!PlantPointScript.HasCrop)
                 {
+                    //Tracker
+                    GameManager.instance.NotifyPlant();
+
                     PlantPointScript.enablePlantIcon();
                     spawnPlant(go);
                     playerManager.DisablePlantIcon();
@@ -397,9 +400,14 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
             if (plantBehaviourScript.CanBeHarvested())
             {
-                AkSoundEngine.PostEvent("HUD_Harvest", gameObject);
                 int points = plantBehaviourScript.CurrentPoints;
                 playerManager.updateBag(points);
+
+                //Tracker
+                GameManager.instance.NotifyHarvest(plantBehaviourScript.currentState, 
+                    points, playerManager.playerHarvest);
+
+                AkSoundEngine.PostEvent("HUD_Harvest", gameObject);
                 resetPlantPointStatus(rootPlant);
                 playerManager.DisableHarvestIcon();
                 barrelCollidingWithPlant = false;
