@@ -1,5 +1,6 @@
 ﻿
 using UnityEngine;
+using System.IO;
 
 /// <summary>
 /// Implementacion para servidor remoto de la Interfaz del Sistema de Persistencia.
@@ -26,7 +27,12 @@ public class FilePersistence : IPersistence
     public void Send(TrackerEvent e)
     {
         string serializedEvent = serializer.Serialize(e);
-        Debug.Log(serializedEvent);
+        Debug.Log(Application.persistentDataPath);
+
+        string path = Application.persistentDataPath + "/events.json";
+        StreamWriter writer = new StreamWriter(path, true);
+        writer.WriteLine(serializedEvent);
+        writer.Close();
     }
 
     /// <summary>

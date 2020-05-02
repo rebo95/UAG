@@ -78,7 +78,12 @@ public class TrackerManager : MonoBehaviour
         e.UserId = userId;
         e.GameId = gameId;
         e.SessionId = sessionId;
+        e.TimeStamp = 1;
         e.Type = MyEventType.StartGame;
+
+        TrackEvent(e);
+
+        e.TimeStamp = 2;
 
         TrackEvent(e);
     }
