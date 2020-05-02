@@ -158,7 +158,7 @@ public class FirstMinEvent : TrackerEvent
 
 /// <summary>
 /// Clase que define el evento que determina cuando cuando se interactúa con 
-/// un parterre.
+/// un parterre para sembrar una planta.
 /// </summary>
 public class UserPlantEvent : TrackerEvent
 {
@@ -183,6 +183,10 @@ public class UserPlantEvent : TrackerEvent
     }
 }
 
+/// <summary>
+/// Clase que define el evento que determina cuando 
+/// el jugador recoge una plantación.
+/// </summary>
 public class UserHarvestEvent : TrackerEvent
 {
     /// <summary>
@@ -206,6 +210,11 @@ public class UserHarvestEvent : TrackerEvent
     }
 }
 
+
+/// <summary>
+/// Clase que define el evento que determina cuando 
+/// el jugador deposita los tomates en la caja de cultivo
+/// </summary>
 public class UserStoreEvent : TrackerEvent
 {
     /// <summary>
@@ -229,6 +238,11 @@ public class UserStoreEvent : TrackerEvent
     }
 }
 
+
+/// <summary>
+/// Clase que define el evento que determina cuando 
+/// el jugador pulsa el botón izquierdo y dispara
+/// </summary>
 public class WeaponShotEvent : TrackerEvent
 {
     /// <summary>
@@ -252,6 +266,11 @@ public class WeaponShotEvent : TrackerEvent
     }
 }
 
+
+/// <summary>
+/// Clase que define el evento que servirá para determinar el tiempo transcurrido 
+/// entre los eventos de empezar partida y la aparición de la imagen tutorial
+/// </summary>
 public class ReadTime : TrackerEvent
 {
     /// <summary>
@@ -275,6 +294,11 @@ public class ReadTime : TrackerEvent
     }
 }
 
+
+/// <summary>
+/// Clase que define el evento que servirá para determinar el tiempo transcurrido 
+/// con la carga máxima de tomates en el la bolsa
+/// </summary>
 public class MaxLoadTimeEvent : TrackerEvent
 {
     /// <summary>
@@ -298,6 +322,11 @@ public class MaxLoadTimeEvent : TrackerEvent
     }
 }
 
+/// <summary>
+/// Clase que define el evento que servirá para determinar el número de 
+/// ocasiones en las que se interactúa con los parterres plantando una semilla
+/// en el primer minuto de juego
+/// </summary>
 public class PlantedFirstMinEvent : TrackerEvent
 {
     /// <summary>
@@ -321,6 +350,12 @@ public class PlantedFirstMinEvent : TrackerEvent
     }
 }
 
+
+/// <summary>
+/// Clase que define el evento que servirá para determinar el número de 
+/// ocasiones en las que se interactúa con el botón derecho del ratón y disparando
+/// en el primer minuto de juego
+/// </summary>
 public class ShotFirstMinEvent : TrackerEvent
 {
     /// <summary>
@@ -344,6 +379,11 @@ public class ShotFirstMinEvent : TrackerEvent
     }
 }
 
+/// <summary>
+/// Clase que define el evento que servirá para determinar 
+/// las posiciones por las que pasa el jugador durante el primer minuto de juego
+/// en el primer minuto de juego
+/// </summary>
 public class PlayerPosFirstMinEvent : TrackerEvent
 {
     /// <summary>
@@ -367,6 +407,11 @@ public class PlayerPosFirstMinEvent : TrackerEvent
     }
 }
 
+
+/// <summary>
+/// Clase que define el evento que servirá para determinar el número de 
+///puntos por minuto que consigue el jugador en cada minuto de partida
+/// </summary>
 public class PointsMinEvent : TrackerEvent
 {
     /// <summary>
