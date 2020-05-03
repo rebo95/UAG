@@ -26,8 +26,8 @@ public class SceneManager : MonoBehaviour
     //Para el tracker
     public void loadWhatToDo()
     {
-        //TODOTracker
-        Debug.Log("EVENTO: WHAT_TO_DO_SHOWN");
+        //Tracker
+        TrackerManager.Instance.TrackEvent(new WhatToDoShownEvent());
     }
 
     public void loadGame()
@@ -36,8 +36,8 @@ public class SceneManager : MonoBehaviour
         AkSoundEngine.PostEvent("MX_StopLooseScreen", gameObject);
         AkSoundEngine.PostEvent("MX_StopWinScreen", gameObject);
 
-        //TODOTracker
-        Debug.Log("EVENTO: START_GAME");
+        //Tracker
+        TrackerManager.Instance.TrackEvent(new StartGameEvent());
 
         UnityEngine.SceneManagement.SceneManager.LoadScene(gameSceneName);       
         Cursor.SetCursor(null, Vector2.one, CursorMode.Auto);

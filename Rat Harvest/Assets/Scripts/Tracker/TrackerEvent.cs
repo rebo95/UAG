@@ -2,9 +2,11 @@
 using UnityEngine;
 
 /// <summary>
-/// Tipo enumerado para identificar los diferentes eventos.
+/// Tipo enumerado para identificar todos los diferentes eventos.
 /// </summary>
-public enum MyEventType { StartGame, EndGame }
+public enum MyEventType { StartGame, EndGame, WhatToDoShown, FirstMin,
+    UserPlant, UserHarvest, UserStore, WeaponShot, ReadTime, MaxLoadTime,
+    PlantedFirstMin, ShotsFirstMin, PlayerPosFirstMin, PointsMin }
 
 /// <summary>
 /// Clase base que define los eventos.
@@ -44,11 +46,15 @@ public abstract class TrackerEvent
     public abstract string ToCSV();
 }
 
+//TODO: terminar de hacer las clases de eventos (ponerles sus atributos específicos y hacerles constructoras que los seteen)
+
 /// <summary>
 /// Clase que define el evento de inicio de sesion.
 /// </summary>
 public class StartGameEvent : TrackerEvent
 {
+    public StartGameEvent() { Type = MyEventType.StartGame; }
+
     /// <summary>
     /// Traduce el evento al formato Json.
     /// </summary>
@@ -79,6 +85,8 @@ public class StartGameEvent : TrackerEvent
 /// </summary>
 public class EndGameEvent : TrackerEvent
 {
+    public EndGameEvent() { Type = MyEventType.EndGame; }
+
     /// <summary>
     /// Traduce el evento al formato Json.
     /// </summary>
@@ -111,6 +119,8 @@ public class EndGameEvent : TrackerEvent
 /// </summary>
 public class WhatToDoShownEvent : TrackerEvent
 {
+    public WhatToDoShownEvent() { Type = MyEventType.WhatToDoShown; }
+
     /// <summary>
     /// Traduce el evento al formato Json.
     /// </summary>
@@ -142,6 +152,8 @@ public class WhatToDoShownEvent : TrackerEvent
 /// </summary>
 public class FirstMinEvent : TrackerEvent
 {
+    public FirstMinEvent() { Type = MyEventType.FirstMin; }
+
     /// <summary>
     /// Traduce el evento al formato Json.
     /// </summary>
@@ -174,6 +186,8 @@ public class FirstMinEvent : TrackerEvent
 /// </summary>
 public class UserPlantEvent : TrackerEvent
 {
+    public UserPlantEvent() { Type = MyEventType.UserPlant; }
+
     /// <summary>
     /// Traduce el evento al formato Json.
     /// </summary>
@@ -205,6 +219,8 @@ public class UserPlantEvent : TrackerEvent
 /// </summary>
 public class UserHarvestEvent : TrackerEvent
 {
+    public UserHarvestEvent() { Type = MyEventType.UserHarvest; }
+
     /// <summary>
     /// Traduce el evento al formato Json.
     /// </summary>
@@ -237,6 +253,8 @@ public class UserHarvestEvent : TrackerEvent
 /// </summary>
 public class UserStoreEvent : TrackerEvent
 {
+    public UserStoreEvent() { Type = MyEventType.UserStore; }
+
     /// <summary>
     /// Traduce el evento al formato Json.
     /// </summary>
@@ -269,6 +287,8 @@ public class UserStoreEvent : TrackerEvent
 /// </summary>
 public class WeaponShotEvent : TrackerEvent
 {
+    public WeaponShotEvent() { Type = MyEventType.WeaponShot; }
+
     /// <summary>
     /// Traduce el evento al formato Json.
     /// </summary>
@@ -299,8 +319,10 @@ public class WeaponShotEvent : TrackerEvent
 /// Clase que define el evento que servirá para determinar el tiempo transcurrido 
 /// entre los eventos de empezar partida y la aparición de la imagen tutorial
 /// </summary>
-public class ReadTime : TrackerEvent
+public class ReadTimeEvent : TrackerEvent
 {
+    public ReadTimeEvent() { Type = MyEventType.ReadTime; }
+
     /// <summary>
     /// Traduce el evento al formato Json.
     /// </summary>
@@ -333,6 +355,8 @@ public class ReadTime : TrackerEvent
 /// </summary>
 public class MaxLoadTimeEvent : TrackerEvent
 {
+    public MaxLoadTimeEvent() { Type = MyEventType.MaxLoadTime; }
+
     /// <summary>
     /// Traduce el evento al formato Json.
     /// </summary>
@@ -365,6 +389,8 @@ public class MaxLoadTimeEvent : TrackerEvent
 /// </summary>
 public class PlantedFirstMinEvent : TrackerEvent
 {
+    public PlantedFirstMinEvent() { Type = MyEventType.PlantedFirstMin; }
+
     /// <summary>
     /// Traduce el evento al formato Json.
     /// </summary>
@@ -396,8 +422,10 @@ public class PlantedFirstMinEvent : TrackerEvent
 /// ocasiones en las que se interactúa con el botón derecho del ratón y disparando
 /// en el primer minuto de juego
 /// </summary>
-public class ShotFirstMinEvent : TrackerEvent
+public class ShotsFirstMinEvent : TrackerEvent
 {
+    public ShotsFirstMinEvent() { Type = MyEventType.ShotsFirstMin; }
+
     /// <summary>
     /// Traduce el evento al formato Json.
     /// </summary>
@@ -430,6 +458,8 @@ public class ShotFirstMinEvent : TrackerEvent
 /// </summary>
 public class PlayerPosFirstMinEvent : TrackerEvent
 {
+    public PlayerPosFirstMinEvent() { Type = MyEventType.PlayerPosFirstMin; }
+
     /// <summary>
     /// Traduce el evento al formato Json.
     /// </summary>
@@ -462,6 +492,8 @@ public class PlayerPosFirstMinEvent : TrackerEvent
 /// </summary>
 public class PointsMinEvent : TrackerEvent
 {
+    public PointsMinEvent() { Type = MyEventType.PointsMin; }
+
     /// <summary>
     /// Traduce el evento al formato Json.
     /// </summary>

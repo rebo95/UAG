@@ -41,10 +41,14 @@ public class TrackerManager : MonoBehaviour
     /// <param name="e">El evento recibido.</param>
     public void TrackEvent(TrackerEvent e)
     {
+        Debug.Log("Recibido evento '" + e.Type.ToString() + "'");
         foreach (ITrackerAsset tracker in activeTrackers)
         {
+            //Con que le interese a un solo tracker es suficiente para que el evento se
+            //procese y se mande al sistema de persistencia
             if (tracker.Accept(e))
             {
+                Debug.Log("Aceptado");
                 e.UserId = userId;
                 e.GameId = gameId;
                 e.SessionId = sessionId;
@@ -75,8 +79,9 @@ public class TrackerManager : MonoBehaviour
 
     void Start()
     {
+        //Hay 3 trackers de momento, uno por cada métrica de las que pusimos
         activeTrackers = new List<ITrackerAsset>();
-        activeTrackers.Add(new StartGameTracker());
+        activeTrackers.Add(new MainMenuTracker());
         SetPersistence(new FilePersistence(new JsonSerializer()));
 
         StartGameEvent e = new StartGameEvent();
@@ -84,7 +89,6 @@ public class TrackerManager : MonoBehaviour
         e.GameId = gameId;
         e.SessionId = sessionId;
         e.TimeStamp = 1;
-        e.Type = MyEventType.StartGame;
 
         TrackEvent(e);
 
