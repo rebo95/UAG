@@ -28,7 +28,10 @@ public class GameManager : MonoBehaviour
 
     public void EndGame()
     {
+        //Tracker
+        TrackerManager.Instance.TrackEvent(new MaxLoadTimeEvent(maxLoadTime));
         TrackerManager.Instance.TrackEvent(new EndGameEvent(playerManager.PlayerScore));
+
         if (Victory())
             SceneManager.instance.loadYouWin();
         else
