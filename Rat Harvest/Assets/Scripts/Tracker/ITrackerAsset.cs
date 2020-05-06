@@ -1,4 +1,13 @@
 ﻿
+public enum TrackerType
+{
+    Ninguno = 0, // Custom name for "Nothing" option
+    MainMenu = 1 << 0,
+    FirstMinute = 1 << 1,
+    ScoreSystem = 1 << 2,
+    Todos = ~0 // Custom name for "Everything" option
+};
+
 /// <summary>
 /// Interfaz de Trackers especializados.
 /// </summary>

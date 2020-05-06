@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
 /// <summary>
 /// Sistema de gestion de telemetria.
@@ -12,6 +13,12 @@ public class TrackerManager : MonoBehaviour
     public static TrackerManager Instance = null;
     private IPersistence persistenceObject;
     private List<ITrackerAsset> activeTrackers;
+    private TrackerType types;
+
+
+    public bool MainMenu;
+    public bool FirstMinute;
+    public bool ScoreSystem;
 
     /// <summary>
     /// Identificador del usuario actual.
@@ -79,22 +86,28 @@ public class TrackerManager : MonoBehaviour
 
     void Start()
     {
-        //Hay 3 trackers de momento, uno por cada métrica de las que pusimos
-        activeTrackers = new List<ITrackerAsset>();
-        activeTrackers.Add(new MainMenuTracker());
+        //JSON
         SetPersistence(new FilePersistence(new JsonSerializer()));
 
-        StartGameEvent e = new StartGameEvent();
-        e.UserId = userId;
-        e.GameId = gameId;
-        e.SessionId = sessionId;
-        e.TimeStamp = 1;
+        //Metemos los trackers que sean necesarios
+        activeTrackers = new List<ITrackerAsset>();
+        if (MainMenu)
+            activeTrackers.Add(new MainMenuTracker());
+        if(FirstMinute)
+            activeTrackers.Add(new FirstMinTracker());
+        if (ScoreSystem)
+            activeTrackers.Add(new ScoreSystemTracker());
 
-        TrackEvent(e);
 
-        e.TimeStamp = 2;
+        //StartGameEvent e = new StartGameEvent();
+        //e.UserId = userId;
+        //e.GameId = gameId;
+        //e.SessionId = sessionId;
+        //e.TimeStamp = 1;
 
-        TrackEvent(e);
+        //TrackEvent(e);
+        //e.TimeStamp = 2;
+        //TrackEvent(e);
     }
 }
 
