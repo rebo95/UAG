@@ -99,7 +99,7 @@ public class GameManager : MonoBehaviour
         }
 
         //Puntos cada minuto que pasa
-        TrackerManager.Instance.TrackEvent(new PointsMinEvent()); //playerManager.playerScore
+        TrackerManager.Instance.TrackEvent(new PointsPerMinEvent()); //playerManager.playerScore
     }
 
     //Se ha disparado el arma
