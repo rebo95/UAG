@@ -85,6 +85,7 @@ public class StartGameEvent : TrackerEvent
 /// </summary>
 public class EndGameEvent : TrackerEvent
 {
+    public int FinalScore { get; set; }
     public EndGameEvent() { Type = MyEventType.EndGame; }
 
     /// <summary>
@@ -219,6 +220,10 @@ public class UserPlantEvent : TrackerEvent
 /// </summary>
 public class UserHarvestEvent : TrackerEvent
 {
+    public int PlantState { get; set; }
+    public int NumOfTomatoes { get; set; }
+
+
     public UserHarvestEvent() { Type = MyEventType.UserHarvest; }
 
     /// <summary>
@@ -253,6 +258,8 @@ public class UserHarvestEvent : TrackerEvent
 /// </summary>
 public class UserStoreEvent : TrackerEvent
 {
+    public int AchievedPoints { get; set; }
+
     public UserStoreEvent() { Type = MyEventType.UserStore; }
 
     /// <summary>
@@ -321,6 +328,8 @@ public class WeaponShotEvent : TrackerEvent
 /// </summary>
 public class ReadTimeEvent : TrackerEvent
 {
+
+
     public ReadTimeEvent() { Type = MyEventType.ReadTime; }
 
     /// <summary>
@@ -355,6 +364,9 @@ public class ReadTimeEvent : TrackerEvent
 /// </summary>
 public class MaxLoadTimeEvent : TrackerEvent
 {
+
+    public float TimeWithMaxLoad { get; set;}
+
     public MaxLoadTimeEvent() { Type = MyEventType.MaxLoadTime; }
 
     /// <summary>
@@ -389,6 +401,7 @@ public class MaxLoadTimeEvent : TrackerEvent
 /// </summary>
 public class PlantedFirstMinEvent : TrackerEvent
 {
+    public int NumOfPlantations { get; set; }
     public PlantedFirstMinEvent() { Type = MyEventType.PlantedFirstMin; }
 
     /// <summary>
@@ -424,6 +437,7 @@ public class PlantedFirstMinEvent : TrackerEvent
 /// </summary>
 public class ShotsFirstMinEvent : TrackerEvent
 {
+    public int NumOfShots { get; set; }
     public ShotsFirstMinEvent() { Type = MyEventType.ShotsFirstMin; }
 
     /// <summary>
@@ -458,6 +472,9 @@ public class ShotsFirstMinEvent : TrackerEvent
 /// </summary>
 public class PlayerPosFirstMinEvent : TrackerEvent
 {
+
+    public int posX { get; set; }
+    public int posY { get; set; }
     public PlayerPosFirstMinEvent() { Type = MyEventType.PlayerPosFirstMin; }
 
     /// <summary>
@@ -490,9 +507,10 @@ public class PlayerPosFirstMinEvent : TrackerEvent
 /// Clase que define el evento que servirá para determinar el número de 
 ///puntos por minuto que consigue el jugador en cada minuto de partida
 /// </summary>
-public class PointsMinEvent : TrackerEvent
+public class PointsPerMinEvent : TrackerEvent
 {
-    public PointsMinEvent() { Type = MyEventType.PointsMin; }
+    public int achievedPoints { get; set; }
+    public PointsPerMinEvent() { Type = MyEventType.PointsMin; }
 
     /// <summary>
     /// Traduce el evento al formato Json.
