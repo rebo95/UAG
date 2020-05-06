@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
@@ -86,7 +87,12 @@ public class StartGameEvent : TrackerEvent
 public class EndGameEvent : TrackerEvent
 {
     public int FinalScore { get; set; }
-    public EndGameEvent() { Type = MyEventType.EndGame; }
+
+    public EndGameEvent(int finalScore)
+    {
+        FinalScore = finalScore;
+        Type = MyEventType.EndGame;
+    }
 
     /// <summary>
     /// Traduce el evento al formato Json.
@@ -223,8 +229,12 @@ public class UserHarvestEvent : TrackerEvent
     public int PlantState { get; set; }
     public int NumOfTomatoes { get; set; }
 
-
-    public UserHarvestEvent() { Type = MyEventType.UserHarvest; }
+    public UserHarvestEvent(int plantState, int numOfTomatoes)
+    {
+        PlantState = plantState;
+        NumOfTomatoes = numOfTomatoes;
+        Type = MyEventType.UserHarvest;
+    }
 
     /// <summary>
     /// Traduce el evento al formato Json.
@@ -260,7 +270,11 @@ public class UserStoreEvent : TrackerEvent
 {
     public int AchievedPoints { get; set; }
 
-    public UserStoreEvent() { Type = MyEventType.UserStore; }
+    public UserStoreEvent(int achievedPoints)
+    {
+        AchievedPoints = achievedPoints;
+        Type = MyEventType.UserStore;
+    }
 
     /// <summary>
     /// Traduce el evento al formato Json.
@@ -328,8 +342,6 @@ public class WeaponShotEvent : TrackerEvent
 /// </summary>
 public class ReadTimeEvent : TrackerEvent
 {
-
-
     public ReadTimeEvent() { Type = MyEventType.ReadTime; }
 
     /// <summary>
@@ -364,10 +376,13 @@ public class ReadTimeEvent : TrackerEvent
 /// </summary>
 public class MaxLoadTimeEvent : TrackerEvent
 {
-
     public float TimeWithMaxLoad { get; set;}
 
-    public MaxLoadTimeEvent() { Type = MyEventType.MaxLoadTime; }
+    public MaxLoadTimeEvent(float timeWithMaxLoad)
+    {
+        TimeWithMaxLoad = timeWithMaxLoad;
+        Type = MyEventType.MaxLoadTime;
+    }
 
     /// <summary>
     /// Traduce el evento al formato Json.
@@ -402,7 +417,12 @@ public class MaxLoadTimeEvent : TrackerEvent
 public class PlantedFirstMinEvent : TrackerEvent
 {
     public int NumOfPlantations { get; set; }
-    public PlantedFirstMinEvent() { Type = MyEventType.PlantedFirstMin; }
+
+    public PlantedFirstMinEvent(int numOfPlantations)
+    {
+        NumOfPlantations = numOfPlantations;
+        Type = MyEventType.PlantedFirstMin;
+    }
 
     /// <summary>
     /// Traduce el evento al formato Json.
@@ -438,7 +458,12 @@ public class PlantedFirstMinEvent : TrackerEvent
 public class ShotsFirstMinEvent : TrackerEvent
 {
     public int NumOfShots { get; set; }
-    public ShotsFirstMinEvent() { Type = MyEventType.ShotsFirstMin; }
+
+    public ShotsFirstMinEvent(int numOfShots)
+    {
+        NumOfShots = numOfShots;
+        Type = MyEventType.ShotsFirstMin;
+    }
 
     /// <summary>
     /// Traduce el evento al formato Json.
@@ -472,10 +497,13 @@ public class ShotsFirstMinEvent : TrackerEvent
 /// </summary>
 public class PlayerPosFirstMinEvent : TrackerEvent
 {
+    public List<Vector2> Positions { get; set; }
 
-    public int posX { get; set; }
-    public int posY { get; set; }
-    public PlayerPosFirstMinEvent() { Type = MyEventType.PlayerPosFirstMin; }
+    public PlayerPosFirstMinEvent(ref List<Vector2> positions)
+    {
+        this.Positions = positions;
+        Type = MyEventType.PlayerPosFirstMin;
+    }
 
     /// <summary>
     /// Traduce el evento al formato Json.
@@ -510,7 +538,12 @@ public class PlayerPosFirstMinEvent : TrackerEvent
 public class PointsPerMinEvent : TrackerEvent
 {
     public int achievedPoints { get; set; }
-    public PointsPerMinEvent() { Type = MyEventType.PointsMin; }
+
+    public PointsPerMinEvent(int achievedPoints)
+    {
+        this.achievedPoints = achievedPoints;
+        Type = MyEventType.PointsMin;
+    }
 
     /// <summary>
     /// Traduce el evento al formato Json.

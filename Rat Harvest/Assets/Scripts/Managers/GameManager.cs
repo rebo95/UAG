@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour
 
     public void EndGame()
     {
-        TrackerManager.Instance.TrackEvent(new EndGameEvent());
+        TrackerManager.Instance.TrackEvent(new EndGameEvent(finalScore));
         if (Victory())
             SceneManager.instance.loadYouWin();
         else
@@ -45,6 +45,10 @@ public class GameManager : MonoBehaviour
     //Tiros y plantaciones hechas
     private int shots = 0;
     private int planted = 0;
+
+    //Plantas y estados de crecimiento
+    private int plantState = 0;
+    private int numOfTomatoesPerPlant = 0;
     
     //Para trackear la carga máxima
     private bool maxLoad = false;
@@ -55,6 +59,10 @@ public class GameManager : MonoBehaviour
     const int POS_RATE = 2; //Cada cuántos segundos queremos que se registre la posición del jugador (2s de momento)
     List<Vector2> positions = new List<Vector2>();
     private float positionsTimer = 0;
+
+    //Puntuación 
+    private int score = 0;
+    private int finalScore = 0;
 
 
     //Actualiza el tiempo
@@ -91,15 +99,15 @@ public class GameManager : MonoBehaviour
             TrackerManager.Instance.TrackEvent(new FirstMinEvent());
 
             //Datos que nos interesan de ese minuto
-            TrackerManager.Instance.TrackEvent(new PlantedFirstMinEvent()); //planted
-            TrackerManager.Instance.TrackEvent(new ShotsFirstMinEvent()); //shots
-            TrackerManager.Instance.TrackEvent(new PlayerPosFirstMinEvent()); //positions
+            TrackerManager.Instance.TrackEvent(new PlantedFirstMinEvent(planted)); //planted
+            TrackerManager.Instance.TrackEvent(new ShotsFirstMinEvent(shots)); //shots
+            TrackerManager.Instance.TrackEvent(new PlayerPosFirstMinEvent(ref positions)); //positions
 
             firstMin = false;
         }
 
         //Puntos cada minuto que pasa
-        TrackerManager.Instance.TrackEvent(new PointsPerMinEvent()); //playerManager.playerScore
+        TrackerManager.Instance.TrackEvent(new PointsPerMinEvent(score)); //playerManager.playerScore
     }
 
     //Se ha disparado el arma
@@ -119,7 +127,7 @@ public class GameManager : MonoBehaviour
     //Se han recogido tomates
     public void NotifyHarvest(int plantState, int tomatoes, int playerLoad)
     {
-        TrackerManager.Instance.TrackEvent(new UserHarvestEvent()); //plantState, tomatoes
+        TrackerManager.Instance.TrackEvent(new UserHarvestEvent(plantState, numOfTomatoesPerPlant)); //plantState, tomatoes
 
         //Hemos cogido Máxima carga
         if (playerLoad == playerManager.BagCapacity)
@@ -132,7 +140,7 @@ public class GameManager : MonoBehaviour
     //Se han depositado los tomates
     public void NotifyStore(int score)
     {
-        TrackerManager.Instance.TrackEvent(new UserStoreEvent()); //score
+        TrackerManager.Instance.TrackEvent(new UserStoreEvent(score)); //score
 
         //Veníamos con la carga máxima
         if (maxLoad)
