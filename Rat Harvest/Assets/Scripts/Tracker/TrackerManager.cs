@@ -24,6 +24,7 @@ public class TrackerManager : MonoBehaviour
     /// <summary>
     /// Identificador del usuario actual.
     /// </summary>
+    [SerializeField]
     private int userId;
     /// <summary>
     /// Identificador del juego actual.
