@@ -32,7 +32,7 @@ public class TrackerManager : MonoBehaviour
     /// <summary>
     /// Identificador de la sesion actual.
     /// </summary>
-    private long sessionId;
+    private string sessionId;
 
     /// <summary>
     /// Modifica el objeto encargado del sistema de persistencia.
@@ -87,7 +87,7 @@ public class TrackerManager : MonoBehaviour
 
     void Start()
     {
-        sessionId = AnalyticsSessionInfo.sessionId;
+        sessionId = CreateSessionId();
 
         //JSON
         SetPersistence(new FilePersistence(new JsonSerializer()));
@@ -111,6 +111,16 @@ public class TrackerManager : MonoBehaviour
         //TrackEvent(e);
         //e.TimeStamp = 2;
         //TrackEvent(e);
+    }
+
+    // Crea un identificador único para la sesión de juego usando la fecha actual, hora, minutos y segundos
+    private string CreateSessionId()
+    {
+        DateTime dt = DateTime.Now;
+        int dtMillisecond = DateTime.Now.Millisecond;
+        string id = Convert.ToString(dt) + ":" + Convert.ToString(dtMillisecond);
+
+        return id;
     }
 }
 
