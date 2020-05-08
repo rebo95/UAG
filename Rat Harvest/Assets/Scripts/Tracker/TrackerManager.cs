@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Analytics;
 using UnityEditor;
 
 /// <summary>
@@ -31,7 +32,7 @@ public class TrackerManager : MonoBehaviour
     /// <summary>
     /// Identificador de la sesion actual.
     /// </summary>
-    private int sessionId;
+    private long sessionId;
 
     /// <summary>
     /// Modifica el objeto encargado del sistema de persistencia.
@@ -86,6 +87,8 @@ public class TrackerManager : MonoBehaviour
 
     void Start()
     {
+        sessionId = AnalyticsSessionInfo.sessionId;
+
         //JSON
         SetPersistence(new FilePersistence(new JsonSerializer()));
 

@@ -25,7 +25,7 @@ public abstract class TrackerEvent
     /// <summary>
     /// Identificador de la sesion en la que se ha generado el evento.
     /// </summary>
-    public int SessionId { get; set; }
+    public long SessionId { get; set; }
     /// <summary>
     /// Instante temporal en el que se ha generado el evento.
     /// </summary>
