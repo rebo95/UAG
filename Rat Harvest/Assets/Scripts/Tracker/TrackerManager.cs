@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Analytics;
-using UnityEditor;
 
 /// <summary>
 /// Sistema de gestion de telemetria.
@@ -29,10 +26,12 @@ public class TrackerManager : MonoBehaviour
     /// <summary>
     /// Identificador del juego actual.
     /// </summary>
+    [SerializeField]
     private int gameId;
     /// <summary>
     /// Identificador de la sesion actual.
     /// </summary>
+    [SerializeField]
     private string sessionId;
 
     /// <summary>
@@ -90,28 +89,17 @@ public class TrackerManager : MonoBehaviour
     {
         sessionId = CreateSessionId();
 
-        //JSON
+        // Sistema de persistencia a archivo + serializador JSON
         SetPersistence(new FilePersistence(new JsonSerializer()));
 
-        //Metemos los trackers que sean necesarios
+        // Metemos los trackers que sean necesarios
         activeTrackers = new List<ITrackerAsset>();
         if (MainMenu)
             activeTrackers.Add(new MainMenuTracker());
-        if(FirstMinute)
+        if (FirstMinute)
             activeTrackers.Add(new FirstMinTracker());
         if (ScoreSystem)
             activeTrackers.Add(new ScoreSystemTracker());
-
-
-        //StartGameEvent e = new StartGameEvent();
-        //e.UserId = userId;
-        //e.GameId = gameId;
-        //e.SessionId = sessionId;
-        //e.TimeStamp = 1;
-
-        //TrackEvent(e);
-        //e.TimeStamp = 2;
-        //TrackEvent(e);
     }
 
     // Crea un identificador único para la sesión de juego usando la fecha actual, hora, minutos y segundos
@@ -124,8 +112,3 @@ public class TrackerManager : MonoBehaviour
         return id;
     }
 }
-
-// DUDAS:
-// ¿La cola de eventos debería ir en el TrackerManager o en el sistema de persistencia? Si va en el sistema de persistencia, ¿es mejor una cola de strings o de TrackerEvents?
-// ¿Los métodos del serializador deberían ser estáticos? ¿Esto es compatible en C# con el patrón Strategy? Si no, ¿qué clase cuenta con un objeto serializador?
-// Si utilizamos TrackerAssets, ¿es necesario implementarlos con un patrón Visitor puro? ¿Basta con comprobar el tipo del TrackerEvent y devolver true o false?
